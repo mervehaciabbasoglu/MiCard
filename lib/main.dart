@@ -1,99 +1,87 @@
+
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatefulWidget {
-
-  @override
-  State<MyApp> createState() => _MyAppState();
+void main() {
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: GirisEkrani(),
-    );
-  }
-}
-
-class GirisEkrani extends StatefulWidget {
-  const GirisEkrani({Key? key}) : super(key: key);
-
-  @override
-  State<GirisEkrani> createState() => _GirisEkraniState();
-}
-
-class _GirisEkraniState extends State<GirisEkrani> {
-  TextEditingController t1 = TextEditingController();
-  TextEditingController t2 = TextEditingController();
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Text("Giriş  Sayfası"),
-            TextFormField(controller: t1,),
-            TextFormField(controller: t2,),
-            ElevatedButton(
-                child: Text("Giriş Yap"),
-              onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>ProfilEkrani(kullaniciAdi: t1.text, sifre: t2.text),
+      home: Scaffold(
+        backgroundColor: Colors.teal,
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              CircleAvatar(
+                radius: 50.0,
+              ),
+              Text(
+                'Merve Hacıabbasoğlu',
+                style: TextStyle(
+                  fontFamily: 'Pacifico',
+                  fontSize: 40.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                'FLUTTER DEVELOPER',
+                style: TextStyle(
+                  fontFamily: 'Source Sans Pro',
+                  fontSize: 20.0,
+                  letterSpacing: 2.5,
+                  color: Colors.teal.shade100,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 20.0,
+                width: 150.0,
+                child: Divider(
+                  color: Colors.teal.shade100,
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.phone,
+                    color: Colors.teal,
+                  ),
+                  title: Text('553664688',
+                    style: TextStyle(
+                      color: Colors.teal.shade900,
+                      fontFamily: 'Source Sans Pro',
+                      fontSize: 20.0,
                     ),
-                  );
-              },
-            ),
-          ],
+                  ),
+                )),
+              Card(
+                margin: EdgeInsets.symmetric(vertical: 10.0,
+                horizontal: 25.0),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.email,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                        'merve@gmail.com',
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.teal.shade900,
+                            fontFamily: 'Source Sans Pro'
+                        ),
+                      ),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-class ProfilEkrani extends StatefulWidget {
-  String kullaniciAdi, sifre;
-  ProfilEkrani({required this.kullaniciAdi, required this.sifre});
-
-  @override
-  State<ProfilEkrani> createState() => _ProfilEkraniState();
-}
-
-class _ProfilEkraniState extends State<ProfilEkrani> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Text("Profil Sayfası"),
-            Text(widget.kullaniciAdi),
-            Text(widget.sifre),
-            ElevatedButton(
-                child: Text("Çıkış Yap"),
-              onPressed: (){
-                  Navigator.pop(context);
-              }),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
